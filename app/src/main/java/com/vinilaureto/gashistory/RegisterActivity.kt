@@ -21,9 +21,12 @@ class RegisterActivity : AppCompatActivity() {
         val register = intent.getParcelableExtra<Register>(MainActivity.EXTRA_REGISTER)
         position = intent.getIntExtra(MainActivity.EXTRA_REGISTER_POSITION, -1)
 
-
         if (register != null) {
-            activityRegisterBinding.registerDateDp.updateDate(2021,11, 10)
+            var date = register?.date
+            val cal = Calendar.getInstance()
+            cal.time = date
+
+            activityRegisterBinding.registerDateDp.updateDate(cal.get(Calendar.YEAR),cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH))
             activityRegisterBinding.registerPriceEt.setText(register.price.toString())
         }
 
@@ -45,7 +48,9 @@ class RegisterActivity : AppCompatActivity() {
         setResult(RESULT_OK, intentResult)
         finish()
     }
-    fun cancelAction(view: View) {}
+    fun cancelAction(view: View) {
+        finish()
+    }
 
     private fun getDateFromDatepicker(): Date {
         var day = activityRegisterBinding.registerDateDp.dayOfMonth
