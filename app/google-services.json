@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "751408709292",
+    "firebase_url": "https://gashistory-4399a-default-rtdb.firebaseio.com",
+    "project_id": "gashistory-4399a",
+    "storage_bucket": "gashistory-4399a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751408709292:android:0db0fbca434c05c6b66909",
+        "android_client_info": {
+          "package_name": "com.vinilaureto.gashistory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751408709292-mea1b6b13pe2gs16gjcl32938n1hrt0k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vinilaureto.gashistory",
+            "certificate_hash": "f602091f92abe6722860c7fda03394d8d690a6de"
+          }
+        },
+        {
+          "client_id": "751408709292-9p8ie3pshil8vq06u9h5j42qcdukvc49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjYDYOFQan4hQOHAwlLIfecN-OidY8KkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751408709292-9p8ie3pshil8vq06u9h5j42qcdukvc49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
