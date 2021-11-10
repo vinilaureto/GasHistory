@@ -6,6 +6,8 @@
 
     <TextView
         android:id="@+id/registerDateTv"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
         android:layout_width="0dp"
         android:textSize="20sp"
         android:layout_height="wrap_content"
@@ -16,6 +18,8 @@
 
     <TextView
         android:id="@+id/registerValueTv"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
         android:layout_width="0dp"
         android:textSize="20sp"
         android:layout_height="wrap_content"

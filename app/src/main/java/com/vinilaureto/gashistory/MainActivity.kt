@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.removeItemMi -> {
                 with(AlertDialog.Builder(this)) {
-                    setMessage("Deseja apagar o registro de ${register.date.toString()}?")
+                    setMessage("Deseja apagar o registro?")
                     setPositiveButton("Sim") {_, _ ->
                         registersList.removeAt(registerPosition)
                         registerAdapter.notifyDataSetChanged()

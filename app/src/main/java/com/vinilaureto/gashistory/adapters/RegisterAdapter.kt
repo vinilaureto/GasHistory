@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.vinilaureto.gashistory.databinding.LayoutRegisterBinding
 import com.vinilaureto.gashistory.entities.Register
+import java.text.DecimalFormat
+import java.util.*
 
 class RegisterAdapter (
     val localContext: Context,
@@ -33,9 +35,13 @@ class RegisterAdapter (
         val register = registersList[position]
 
         val registerLayoutHolder = registerLayoutView.tag as RegisterLayoutHolder
+        var date = register?.date
+        val cal = Calendar.getInstance()
+        cal.time = date
+        val priceFormat = DecimalFormat("#.###")
         with(registerLayoutHolder) {
-            dateTv.text = register.date.toString()
-            valueTv.text = "R$ ${register.price.toString()}"
+            dateTv.text = "${cal.get(Calendar.DAY_OF_MONTH)}/${cal.get(Calendar.MONTH)}/${cal.get(Calendar.YEAR)}"
+            valueTv.text = "R$ ${priceFormat.format(register.price)}"
         }
 
         return registerLayoutView
