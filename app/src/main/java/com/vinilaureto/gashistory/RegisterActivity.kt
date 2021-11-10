@@ -31,9 +31,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun saveAction(view: View) {
-        val register = Register(
+          val register = Register(
             getDateFromDatepicker(),
-            activityRegisterBinding.registerPriceTv.text.toString().toDouble()
+            activityRegisterBinding.registerPriceEt.text.toString().toDouble()
         )
 
         val intentResult = Intent()
@@ -44,7 +44,6 @@ class RegisterActivity : AppCompatActivity() {
 
         setResult(RESULT_OK, intentResult)
         finish()
-
     }
     fun cancelAction(view: View) {}
 

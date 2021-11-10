@@ -3,7 +3,9 @@ package com.vinilaureto.gashistory.entities
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
@@ -50,6 +52,20 @@ class RegisterFirebase: RegisterDao {
             override fun onCancelled(error: DatabaseError) {
                 // Não se aplica devido a estrutura da arvore atual
             }
+        })
+        appRtDb.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                registersList.clear()
+                snapshot.children.forEach {
+                    val register: Register = it.getValue<Register>()?: Register()
+                    registersList.add(register)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Não se aplica
+            }
+
         })
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
@@ -54,6 +55,14 @@ class MainActivity : AppCompatActivity() {
             addRegisterEditorActivityLauncher.launch(Intent(this, RegisterActivity::class.java))
         }
 
+        activityMainBinding.registersLv.setOnItemClickListener{_, _, position, _ ->
+            val register = registersList[position]
+            val editRegisterIntent = Intent(this, RegisterActivity::class.java)
+            editRegisterIntent.putExtra(EXTRA_REGISTER, register)
+            editRegisterIntent.putExtra(EXTRA_REGISTER_POSITION, position)
+            editRegisterEditorActivityLauncher.launch(editRegisterIntent)
+        }
+
         addRegisterEditorActivityLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val register = result.data?.getParcelableExtra<Register>(EXTRA_REGISTER)
@@ -88,16 +97,29 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.context_menu_item, menu)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.refreshMi -> {
+            registerAdapter.notifyDataSetChanged()
+            true
+        }
+        else -> { false }
+    }
+
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val registerPosition = (item.menuInfo as AdapterView.AdapterContextMenuInfo).position
         val register = registersList[registerPosition]
 
         return when (item.itemId) {
             R.id.editItemMi -> {
-                val editSeriesIntent = Intent(this, RegisterActivity::class.java)
-                editSeriesIntent.putExtra(EXTRA_REGISTER, register)
-                editSeriesIntent.putExtra(EXTRA_REGISTER_POSITION, registerPosition)
-                editRegisterEditorActivityLauncher.launch(editSeriesIntent)
+                val editRegisterIntent = Intent(this, RegisterActivity::class.java)
+                editRegisterIntent.putExtra(EXTRA_REGISTER, register)
+                editRegisterIntent.putExtra(EXTRA_REGISTER_POSITION, registerPosition)
+                editRegisterEditorActivityLauncher.launch(editRegisterIntent)
                 true
             }
             R.id.removeItemMi -> {
